@@ -5,7 +5,7 @@ function Header() {
   return (
     <header className="bg-white shadow-md px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       {/* This is logo or site title */}
-      <Link to="/" className="text-2xl font-bold text-black-600">
+      <Link to="/" className="text-red-500 font-bold text-black-600">
         MyNewsApp
       </Link>
       <CategoryList />

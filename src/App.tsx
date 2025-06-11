@@ -3,6 +3,8 @@ import { fetchTopHeadlines } from "./API/newsApi";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 
+// @TODO adding routes to the project
+
 function HomeApp() {
   useEffect(() => {
     const loadArticles = async () => {

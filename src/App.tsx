@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { fetchTopHeadlines } from "./API/newsApi";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-
-// @TODO adding routes to the project
+import Home from "./Pages/Home";
+import Category from "./Pages/Category";
 
 function HomeApp() {
   useEffect(() => {
@@ -16,13 +18,16 @@ function HomeApp() {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <div className="p-4">
-        <h1 className="text-red-500 font-bold">Check the console 👇</h1>
-      </div>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/category/:categoryId" element={<Category />} />
+        {/* Add more routes here if needed */}
+      </Routes>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 

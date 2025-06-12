@@ -1,33 +1,19 @@
-import { useEffect, useState } from "react"; // useState & useEffect (store the data, run the code )
+import { useEffect, useState } from "react";
 import ArticleCard from "../Components/ArticleCard.tsx";
+import { fetchTopHeadlines } from "../API/newsApi.ts";
 
-// The main Function
 function Home() {
-  const [articles, setArticles] = useState([]); // to Hold the list of articles from the API
-  const [loading, setLoading] = useState(true); // Indicate if data is still being fetched
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
-  const BASE_URL = import.meta.env.VITE_NEWS_BASE_URL;
-
-  // This function runs after the component first renders.
   useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        //Send a request to the api
-        const res = await fetch(
-          `${BASE_URL}/top-headlines?country=us&pageSize=12&apiKey=${API_KEY}`
-        );
-        const data = await res.json(); //converts the response into a js object
-        setArticles(data.articles); // fill the empty article
-      } catch (error) {
-        console.error("Error fetching articles:", error);
-      } finally {
-        //This always run, it tells the app that loading is done, so u can stop showing
-        setLoading(false);
-      }
-    };
+    async function loadArticles() {
+      const articles = await fetchTopHeadlines(); // Use the helper function here
+      setArticles(articles);
+      setLoading(false);
+    }
 
-    fetchArticles();
+    loadArticles();
   }, []);
 
   return (

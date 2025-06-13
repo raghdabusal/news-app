@@ -8,7 +8,6 @@ const categories = [
   "science",
   "sports",
   "technology",
-  "RAGHD",
 ];
 
 function CategoryList() {

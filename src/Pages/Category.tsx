@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { Article } from "../Components/ArticleCard"; // only import the type
 import ArticleCard from "../Components/ArticleCard"; // import the component normally
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 function Category() {
   // Correct param name (matches your <Route path="/category/:categoryId" ...>)
@@ -37,7 +38,7 @@ function Category() {
       <h1 className="text-2xl font-bold capitalize mb-4">{categoryId} News</h1>
 
       {loading ? (
-        <p>Loading articles...</p>
+        <LoadingSpinner />
       ) : articles.length === 0 ? (
         <p>No articles found for this category.</p>
       ) : (

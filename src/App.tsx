@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ArticleDetails from "./Pages/ArticleDetails";
 
 import { fetchTopHeadlines } from "./API/newsApi";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import Category from "./Pages/Category";
+import Search from "./Pages/Search";
 
 function HomeApp() {
   useEffect(() => {
@@ -24,7 +26,8 @@ function HomeApp() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryId" element={<Category />} />
-        {/* Add more routes here if needed */}
+        <Route path="/search" element={<Search />} />
+        <Route path="/article-details" element={<ArticleDetails />} />
       </Routes>
       <Footer />
     </BrowserRouter>

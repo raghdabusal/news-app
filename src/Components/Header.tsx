@@ -1,19 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CategoryList from "./CategoryList";
+import SearchBar from "./SearchBar";
 
 function Header() {
+  const navigate = useNavigate();
+
+  function handleSearch(query: string) {
+    if (!query) {
+      navigate("/"); // if empty, go home
+      return;
+    }
+    navigate(`/search?q=${encodeURIComponent(query)}`);
+  }
+
   return (
     <header className="bg-white shadow-md px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      {/* This is logo or site title */}
       <Link to="/" className="text-red-500 font-bold text-black-600">
         MyNewsApp
       </Link>
       <CategoryList />
-      <input
-        type="text"
-        placeholder="Search..."
-        className="border rounded-md px-3 py-1 text-sm w-full md:w-64"
-      />
+      {/* Pass the onSearch prop */}
+      <SearchBar onSearch={handleSearch} />
     </header>
   );
 }

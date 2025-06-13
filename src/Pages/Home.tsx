@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "../Components/ArticleCard.tsx";
 import { fetchTopHeadlines } from "../API/newsApi.ts";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 function Home() {
   const [articles, setArticles] = useState([]);
@@ -20,7 +21,7 @@ function Home() {
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-4">Top Headlines</h1>
       {loading ? (
-        <p>Loading...</p>
+        <LoadingSpinner />
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article, index) => (
